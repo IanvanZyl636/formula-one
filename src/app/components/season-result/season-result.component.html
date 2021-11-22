@@ -1,0 +1,45 @@
+<app-page
+  [heading]="pageTitle"
+  [centerContent]="centerContent"
+  [isLoading]="isLoading"
+>
+  <ng-container>
+    <div class="table-responsive">
+      <table id="races-table" class="table" *ngIf="races.length > 0">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Race</th>
+            <th>Circuit</th>
+            <th>Winner</th>
+            <th>Constructor</th>
+            <th>Points</th>
+            <th>Laps</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let race of races"
+            [ngClass]="{
+              'driver-id-hightlight':
+                driverId === race.Results[0]?.Driver?.driverId
+            }"
+          >
+            <th>{{ race?.round }}</th>
+            <td>{{ race?.raceName }}</td>
+            <td>{{ race?.Circuit?.circuitName }}</td>
+            <td>{{ race.Results[0]?.Driver?.familyName }}</td>
+            <td>{{ race.Results[0]?.Constructor?.name }}</td>
+            <td>{{ race.Results[0]?.points }}</td>
+            <td>{{ race.Results[0]?.laps }}</td>
+            <td>{{ race.Results[0]?.Time?.time }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="races.length === 0" class="no-list-items-text p-4">
+      <span>No result found</span>
+    </div>
+  </ng-container>
+</app-page>
