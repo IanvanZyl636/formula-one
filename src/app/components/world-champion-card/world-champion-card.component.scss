@@ -1,0 +1,38 @@
+@import '_variables';
+
+.wcc-body {
+  height: 100%;
+}
+
+.wcc-slide {
+  background-color: $theme-red;
+  height: 100%;
+}
+
+.wcc-card-container {
+  border-radius: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+  padding: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  background-image: none;
+}
+
+.wcc-card-container:hover {
+  background-color: $theme-dark-blue;
+  color: $theme-white;
+}
+
+.wcc-champion {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.wcc-season {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.wcc-nationality {
+  font-size: 1.5rem;
+}

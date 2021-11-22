@@ -1,0 +1,22 @@
+<ng-container *ngIf="seasonWorldChampion != null && driverStanding != null">
+  <div
+    class="wcc-card-container not-selectable"
+    [routerLink]="[
+      '/season-result',
+      seasonWorldChampion.season,
+      driverStanding?.Driver?.driverId
+    ]"
+  >
+    <div body class="wcc-body text-center">
+      <div class="wcc-season">
+        <span>{{ seasonWorldChampion.season }} Season Winner</span>
+      </div>
+      <div class="wcc-champion">
+        <span>{{ driverStanding?.Driver?.familyName }}</span>
+      </div>
+      <div class="wcc-nationality">
+        <span>{{ driverStanding?.Driver?.nationality }}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>
