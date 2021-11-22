@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+@import '_fonts';
+@import '_variables';
+
+html,
+body {
+  height: 100%;
+  max-height: 100%;
+  font-family: 'Titillium Web', sans-serif;
+  background-color: $theme-egg-shell;
+}
+
+.menu-bg-color {
+  background-color: $theme-red;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.font-formula-one-black {
+  font-family: 'Formula1Black', Arial, Helvetica, sans-serif;
+}
+
+.font-formula-one-bold {
+  font-family: 'Formula1Bold', Arial, Helvetica, sans-serif;
+}
+
+.font-formula-one-regular {
+  font-family: 'Formula1Regular', Arial, Helvetica, sans-serif;
+}
+
+.font-formula-one-wide {
+  font-family: 'Formula1Wide', Arial, Helvetica, sans-serif;
+}
+
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.no-list-items-text {
+  font-size: 1.5rem;
+  font-family: 'Formula1Regular', Arial, Helvetica, sans-serif;
+}
+
+ul {
+  list-style-type: square;
+}
+
+a {
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.2px;
+  list-style: square;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cc1800;
+}

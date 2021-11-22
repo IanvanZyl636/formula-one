@@ -1,0 +1,18 @@
+@import '_variables';
+
+.body-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.footer {
+  padding: 25px 0;
+  background-color: #15151e;
+  color: $theme-white;
+  font-size: 21px;
+  line-height: 21px;
+  font-weight: 400;
+}
