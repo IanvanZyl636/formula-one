@@ -1,0 +1,29 @@
+@import '_variables';
+
+.menu-container {
+  height: 71px;
+}
+
+* {
+  height: 100%;
+}
+
+.link-text {
+  color: $theme-white;
+  font-size: 21px;
+  line-height: 21px;
+  height: 21px;
+  font-weight: 400;
+}
+
+.link-button {
+  cursor: pointer;
+}
+
+.link-button:hover {
+  background-color: #15151e;
+}
+
+.menu-logo-container {
+  padding: 19.25px 0;
+}
