@@ -1,0 +1,25 @@
+<div class="menu-container menu-bg-color">
+  <div class="container">
+    <div class="row">
+      <div [routerLink]="['/']" class="col-auto cursor-pointer">
+        <div class="menu-logo-container">
+          <app-menu-logo></app-menu-logo>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <ng-container *ngFor="let menuItem of menuItems">
+            <a
+              [routerLink]="menuItem.route"
+              class="col-auto link-button not-selectable"
+            >
+              <div class="d-flex align-items-center">
+                <span class="link-text">{{ menuItem.description }}</span>
+              </div>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

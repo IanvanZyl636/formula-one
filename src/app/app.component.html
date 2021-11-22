@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<div class="d-flex h-100 flex-column">
+  <header class="flex-grow-0 flex-shrink-0">
+    <app-nav-menu></app-nav-menu>
+  </header>
+  <div class="overflow-auto flex-grow-1 flex-shrink-0 position-relative">
+    <div class="body-container">
+      <div class="d-flex flex-column h-100">
+        <div class="flex-grow-1 flex-shrink-0">
+          <router-outlet></router-outlet>
+        </div>
+        <footer class="flex-grow-0 flex-shrink-0 footer">
+          <div class="container d-flex justify-content-center">
+            <span>Created by Ian van Zyl</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>

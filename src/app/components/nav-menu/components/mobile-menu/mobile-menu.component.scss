@@ -1,0 +1,37 @@
+@import '_menu';
+
+.burger-menu-container {
+  color: $theme-white;
+  border-radius: 5px;
+  border: 1px solid $theme-white;
+  background-color: $theme-red;
+  height: unset;
+  padding: 5px 10px;
+}
+
+.mobile-menu-dropdown {
+  position: absolute;
+  z-index: 10000;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%);
+  height: unset;
+}
+
+.mobile-menu-side-down-animation {
+  transition: max-height 0.25s;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.burger-menu-container:focus + .mobile-menu-dropdown,
+.burger-menu-container + .mobile-menu-dropdown:active {
+  max-height: 100% !important;
+}
+
+.mobile-menu-dropdown-item {
+  border-top: solid 1px $theme-white;
+  border-bottom: solid 1px $theme-white;
+  height: 69px;
+}
