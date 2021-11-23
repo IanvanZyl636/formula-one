@@ -1,14 +1,6 @@
-<<<<<<< HEAD
-
 # FormulaOne :checkered_flag:
 
-=======
-
-# Formula One :rocket:
-
-> > > > > > > f6d5da23666bad4642ad3f650b8f8f68637643b3
-
-<img  src="https://i.ibb.co/0mtYPCX/2021-11-22-22-09-56.gif">
+<img  src="/sample/sample-gif.gif?raw=true">
 
 ### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
