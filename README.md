@@ -1,4 +1,4 @@
-# FormulaOne :checkered_flag:
+# Formula One :checkered_flag:
 
 <img  src="/sample/sample-gif.gif?raw=true">
 
@@ -94,6 +94,9 @@ The main shared styles is just in the `scr` folder.
 <a href="https://github.com/FortAwesome/angular-fontawesome">angular-fontawesome</a> - Official Angular component for Font Awesome 5+ to add any free font awesome icon
 
 <a href="https://getbootstrap.com/">Minified compiled bootstrap css</a> - Adds all bootstrap css for website without adding the entire library. This makes it easier to create responsive websites
+
+<a href="https://github.com/tannerntannern/ts-mixer">ts-mixer</a> - Adds mixins to your typescript making it easier and more readable to extend multiple classes
+
 
 ### Development and CI/CD dependencies
 
