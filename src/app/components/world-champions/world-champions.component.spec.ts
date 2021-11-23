@@ -6,20 +6,25 @@ import {
   tick,
 } from '@angular/core/testing';
 import { delay, map, of, throwError } from 'rxjs';
-import { ErgastProvider } from 'src/app/integration/ergast/ergast.provider';
 import { PageModule } from '../page/page.module';
 import { WorldChampionCardModule } from '../world-champion-card/world-champion-card.module';
 import { WorldChampionsComponent } from './world-champions.component';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreService } from 'src/app/integration/store.service';
 
 // IMPORT Mock json data for testing
 import * as driverStandingsJson from 'src/mocks/edgast/driver-standings.json';
+import {
+  IMRDataRaceModel,
+  IMRDataStandingsModel,
+} from 'src/app/integration/ergast/models/mr-data.model';
+import { IStandingModel } from 'src/app/integration/ergast/models/standing.model';
 
 describe('WorldChampionsComponent', () => {
   let component: WorldChampionsComponent;
   let fixture: ComponentFixture<WorldChampionsComponent>;
-  let ergastProvider: ErgastProvider;
+  let storeService: StoreService;
 
   const noListItemsMsgFunc = () =>
     fixture.debugElement.query(By.css('.no-list-items-text>span'));
@@ -41,7 +46,7 @@ describe('WorldChampionsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WorldChampionsComponent);
     component = fixture.componentInstance;
-    ergastProvider = fixture.debugElement.injector.get(ErgastProvider);
+    storeService = fixture.debugElement.injector.get(StoreService);
   });
 
   it('should create', () => {
@@ -58,12 +63,11 @@ describe('WorldChampionsComponent', () => {
   it(`should display list of appWorldChampionCardComponents, don't display "No result found message" and center content`, fakeAsync(() => {
     const expectedData = driverStandingsJson;
 
-    spyOn(ergastProvider, 'getDriverStandings').and.callFake(() => {
-      return of(expectedData).pipe(
-        map((resp) => resp.MRData.StandingsTable.StandingsLists),
-        delay(100)
-      );
-    });
+    spyOn<any>(storeService.ergastStore, '_getDriverStandings').and.callFake(
+      () => {
+        return of(expectedData).pipe(delay(100));
+      }
+    );
 
     expect(component.seasonsWorldChampion).toEqual([]);
     expect(component.isLoading).toBeFalse();
@@ -92,9 +96,17 @@ describe('WorldChampionsComponent', () => {
   }));
 
   it('should "No result found message" if the list is blank and not center content', fakeAsync(() => {
-    spyOn(ergastProvider, 'getDriverStandings').and.callFake(() => {
-      return of([]).pipe(delay(100));
-    });
+    spyOn<any>(storeService.ergastStore, '_getDriverStandings').and.callFake(
+      () => {
+        return of({
+          MRData: {
+            StandingsTable: { StandingsLists: [] as IStandingModel[] },
+          },
+        } as {
+          MRData: IMRDataStandingsModel;
+        }).pipe(delay(100));
+      }
+    );
 
     expect(component.seasonsWorldChampion).toEqual([]);
     expect(component.isLoading).toBeFalse();
@@ -135,8 +147,8 @@ describe('WorldChampionsComponent', () => {
 
     const expectedError = 'Test Error';
 
-    spyOn(ergastProvider, 'getDriverStandings').and.callFake(() =>
-      throwError(() => expectedError)
+    spyOn<any>(storeService.ergastStore, '_getDriverStandings').and.callFake(
+      () => throwError(() => expectedError)
     );
 
     fixture.detectChanges();

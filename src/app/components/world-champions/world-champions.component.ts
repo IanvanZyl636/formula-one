@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AsyncComponent } from 'src/app/base-components/async-component/async-component.class';
-import { ErgastProvider } from 'src/app/integration/ergast/ergast.provider';
+import { filter } from 'rxjs/operators';
+import { AsyncComponent } from 'src/app/base-components/async-component/async-component.base';
 import { IStandingModel } from 'src/app/integration/ergast/models/standing.model';
+import { StoreService } from 'src/app/integration/store.service';
 
 @Component({
   selector: 'app-world-champions',
@@ -16,13 +17,20 @@ export class WorldChampionsComponent extends AsyncComponent implements OnInit {
     return this.seasonsWorldChampion.length > 0;
   }
 
-  constructor(private _ergastProvider: ErgastProvider) {
+  constructor(private _storeService: StoreService) {
     super();
   }
 
   ngOnInit(): void {
-    this._apiRequest(this._ergastProvider.getDriverStandings(2005)).subscribe({
-      next: (response) => (this.seasonsWorldChampion = response),
+    this._storeService.ergastStore.getDriverStandingsByYear(2005);
+
+    this._apiRequest(
+      this._storeService.ergastStore.driverStandings.pipe(
+        filter((x) => x !== undefined)
+      )
+    ).subscribe({
+      next: (response) =>
+        (this.seasonsWorldChampion = response as IStandingModel[]),
       error: (error) => {
         console.error(error);
         this.seasonsWorldChampion = [];

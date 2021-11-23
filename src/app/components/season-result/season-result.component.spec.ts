@@ -8,12 +8,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PageModule } from '../page/page.module';
 import { SeasonResultComponent } from './season-result.component';
 import { delay, of, throwError } from 'rxjs';
-import { ErgastProvider } from 'src/app/integration/ergast/ergast.provider';
 import { By } from '@angular/platform-browser';
 import { IMRDataRaceModel } from 'src/app/integration/ergast/models/mr-data.model';
 import { IRaceModel } from 'src/app/integration/ergast/models/race.model';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { StoreService } from 'src/app/integration/store.service';
 
 // IMPORT Mock json data for testing
 import * as seasonResults from 'src/mocks/edgast/season-results.json';
@@ -21,7 +21,7 @@ import * as seasonResults from 'src/mocks/edgast/season-results.json';
 describe('SeasonResultComponent', () => {
   let component: SeasonResultComponent;
   let fixture: ComponentFixture<SeasonResultComponent>;
-  let ergastProvider: ErgastProvider;
+  let storeService: StoreService;
   let route: ActivatedRoute;
 
   const noListItemsMsgFunc = () =>
@@ -40,7 +40,7 @@ describe('SeasonResultComponent', () => {
     fixture = TestBed.createComponent(SeasonResultComponent);
     route = fixture.debugElement.injector.get(ActivatedRoute);
     component = fixture.componentInstance;
-    ergastProvider = fixture.debugElement.injector.get(ErgastProvider);
+    storeService = fixture.debugElement.injector.get(StoreService);
   });
 
   it('should create', () => {
@@ -58,17 +58,21 @@ describe('SeasonResultComponent', () => {
 
     const expectedData = seasonResults;
 
-    spyOn(ergastProvider, 'getSeasonResults').and.callFake(() => {
-      return of(expectedData).pipe(delay(100));
-    });
+    spyOn<any>(storeService.ergastStore, '_getSeasonResults').and.callFake(
+      () => {
+        return of(expectedData).pipe(delay(100));
+      }
+    );
 
     expect(component.races).toEqual([]);
     expect(component.isLoading).toBeFalse();
-    expect(ergastProvider.getSeasonResults).not.toHaveBeenCalled();
+    expect(
+      storeService.ergastStore['_getSeasonResults']
+    ).not.toHaveBeenCalled();
 
     fixture.detectChanges();
 
-    expect(ergastProvider.getSeasonResults).toHaveBeenCalled();
+    expect(storeService.ergastStore['_getSeasonResults']).toHaveBeenCalled();
     expect(component.isLoading).toBeTrue();
     expect(component.races).toEqual([]);
     expect(noListItemsMsgFunc()).toBeFalsy();
@@ -89,11 +93,13 @@ describe('SeasonResultComponent', () => {
       convertToParamMap({ year: '2005' })
     );
 
-    spyOn(ergastProvider, 'getSeasonResults').and.callFake(() => {
-      return of({ MRData: { RaceTable: { Races: [] as IRaceModel[] } } } as {
-        MRData: IMRDataRaceModel;
-      }).pipe(delay(100));
-    });
+    spyOn<any>(storeService.ergastStore, '_getSeasonResults').and.callFake(
+      () => {
+        return of({ MRData: { RaceTable: { Races: [] as IRaceModel[] } } } as {
+          MRData: IMRDataRaceModel;
+        }).pipe(delay(100));
+      }
+    );
 
     expect(component.races).toEqual([]);
     expect(component.isLoading).toBeFalse();
@@ -142,9 +148,11 @@ describe('SeasonResultComponent', () => {
 
     component.driverId = driverId;
 
-    spyOn(ergastProvider, 'getSeasonResults').and.callFake(() => {
-      return of(seasonResultsData).pipe(delay(100));
-    });
+    spyOn<any>(storeService.ergastStore, '_getSeasonResults').and.callFake(
+      () => {
+        return of(seasonResultsData).pipe(delay(100));
+      }
+    );
 
     fixture.detectChanges();
 
@@ -160,13 +168,17 @@ describe('SeasonResultComponent', () => {
       convertToParamMap({ test: '' })
     );
 
-    spyOn(ergastProvider, 'getSeasonResults').and.callFake(() => {
-      return of().pipe(delay(100));
-    });
+    spyOn<any>(storeService.ergastStore, '_getSeasonResults').and.callFake(
+      () => {
+        return of().pipe(delay(100));
+      }
+    );
 
     fixture.detectChanges();
 
-    expect(ergastProvider.getSeasonResults).not.toHaveBeenCalled();
+    expect(
+      storeService.ergastStore['_getSeasonResults']
+    ).not.toHaveBeenCalled();
   });
 
   it('should call getSeasonResults if driverId is null', () => {
@@ -174,13 +186,15 @@ describe('SeasonResultComponent', () => {
       convertToParamMap({ year: '2005' })
     );
 
-    spyOn(ergastProvider, 'getSeasonResults').and.callFake(() => {
-      return of().pipe(delay(100));
-    });
+    spyOn<any>(storeService.ergastStore, '_getSeasonResults').and.callFake(
+      () => {
+        return of().pipe(delay(100));
+      }
+    );
 
     fixture.detectChanges();
 
-    expect(ergastProvider.getSeasonResults).toHaveBeenCalled();
+    expect(storeService.ergastStore['_getSeasonResults']).toHaveBeenCalled();
     expect(component.driverId).toBeNull();
   });
 
@@ -200,7 +214,7 @@ describe('SeasonResultComponent', () => {
 
     const expectedError = 'Test Error';
 
-    spyOn(ergastProvider, 'getSeasonResults').and.callFake(() =>
+    spyOn<any>(storeService.ergastStore, '_getSeasonResults').and.callFake(() =>
       throwError(() => expectedError)
     );
 

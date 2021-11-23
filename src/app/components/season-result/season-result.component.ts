@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { AsyncComponent } from 'src/app/base-components/async-component/async-component.class';
-import { ErgastProvider } from 'src/app/integration/ergast/ergast.provider';
+import { filter } from 'rxjs/operators';
+import { AsyncComponent } from 'src/app/base-components/async-component/async-component.base';
 import { IRaceModel } from 'src/app/integration/ergast/models/race.model';
+import { StoreService } from 'src/app/integration/store.service';
 
 @Component({
   selector: 'app-season-result',
@@ -21,7 +21,7 @@ export class SeasonResultComponent extends AsyncComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _ergastProvider: ErgastProvider
+    private _storeService: StoreService
   ) {
     super();
   }
@@ -39,14 +39,18 @@ export class SeasonResultComponent extends AsyncComponent implements OnInit {
 
     this.pageTitle = `Season ${year} Result`;
 
-    this._apiRequest(this._ergastProvider.getSeasonResults(year))
-      .pipe(map((resp) => resp.MRData.RaceTable.Races))
-      .subscribe({
-        next: (response) => (this.races = response),
-        error: (error) => {
-          console.error(error);
-          this.races = [];
-        },
-      });
+    this._storeService.ergastStore.getSeasonResults(year);
+
+    this._apiRequest(
+      this._storeService.ergastStore.seasonResults.pipe(
+        filter((x) => x !== undefined)
+      )
+    ).subscribe({
+      next: (response) => (this.races = response as IRaceModel[]),
+      error: (error) => {
+        console.error(error);
+        this.races = [];
+      },
+    });
   }
 }

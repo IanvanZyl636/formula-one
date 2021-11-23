@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AsyncComponent } from './async-component.class';
+import { AsyncComponent } from './async-component.base';
 
 @Component({})
 class TestComponent extends AsyncComponent {}
