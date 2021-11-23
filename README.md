@@ -96,7 +96,7 @@ To test the api there are JSON file mocks (src > mocks > edgast) to excercise th
 
 ## Page Components
 
-`page.component` => Is a wrapper component for any page components. It handles the loading spinner, <h1> heading for the page and you can center the content inside of it
+`page.component` => Is a wrapper component for any page components. It handles the loading spinner, `<h1>` heading for the page and you can center the content inside of it
 
 `app-page-not-found` => Is a lazyloaded component when you enter the incorrect route it is setup with `path: '**', loadChildren: () => import('./components/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule),`. This wildcard path is used to trigger all non matching routes
   
