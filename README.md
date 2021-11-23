@@ -1,4 +1,4 @@
-# Formula One :rocket:
+# FormulaOne :checkered_flag:
 
 <img  src="https://i.ibb.co/0mtYPCX/2021-11-22-22-09-56.gif">
 
