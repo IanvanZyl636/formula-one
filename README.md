@@ -1,6 +1,6 @@
 # FormulaOne :checkered_flag:
 
-<img  src="https://i.ibb.co/0mtYPCX/2021-11-22-22-09-56.gif">
+![Final Preview](https://i.ibb.co/0mtYPCX/2021-11-22-22-09-56.gif)
 
 ### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
