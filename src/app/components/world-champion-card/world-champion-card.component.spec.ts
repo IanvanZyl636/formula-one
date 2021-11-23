@@ -6,8 +6,8 @@ import { By } from '@angular/platform-browser';
 
 // IMPORT Mock json data for testing
 import * as driverStandingJson from 'src/mocks/edgast/driver-standing.json';
-import { IStandingModel } from 'src/app/integration/ergast/models/standing.model';
-import { IDriverStandingModel } from 'src/app/integration/ergast/models/driver-standing.model';
+import { IStandingModel } from 'src/app/store/ergast/models/standing.model';
+import { IDriverStandingModel } from 'src/app/store/ergast/models/driver-standing.model';
 
 describe('WorldChampionCardComponent', () => {
   let component: WorldChampionCardComponent;

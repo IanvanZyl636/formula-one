@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { AsyncComponent } from 'src/app/base-components/async-component/async-component.base';
-import { IStandingModel } from 'src/app/integration/ergast/models/standing.model';
-import { StoreService } from 'src/app/integration/store.service';
+import { IStandingModel } from 'src/app/store/ergast/models/standing.model';
+import { StoreService } from 'src/app/store/store.service';
 
 @Component({
   selector: 'app-world-champions',

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { IDriverStandingModel } from 'src/app/integration/ergast/models/driver-standing.model';
-import { IStandingModel } from 'src/app/integration/ergast/models/standing.model';
+import { IDriverStandingModel } from 'src/app/store/ergast/models/driver-standing.model';
+import { IStandingModel } from 'src/app/store/ergast/models/standing.model';
 
 @Component({
   selector: 'app-world-champion-card',

@@ -11,15 +11,15 @@ import { WorldChampionCardModule } from '../world-champion-card/world-champion-c
 import { WorldChampionsComponent } from './world-champions.component';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StoreService } from 'src/app/integration/store.service';
+import { StoreService } from 'src/app/store/store.service';
 
 // IMPORT Mock json data for testing
 import * as driverStandingsJson from 'src/mocks/edgast/driver-standings.json';
 import {
   IMRDataRaceModel,
   IMRDataStandingsModel,
-} from 'src/app/integration/ergast/models/mr-data.model';
-import { IStandingModel } from 'src/app/integration/ergast/models/standing.model';
+} from 'src/app/store/ergast/models/mr-data.model';
+import { IStandingModel } from 'src/app/store/ergast/models/standing.model';
 
 describe('WorldChampionsComponent', () => {
   let component: WorldChampionsComponent;

@@ -9,11 +9,11 @@ import { PageModule } from '../page/page.module';
 import { SeasonResultComponent } from './season-result.component';
 import { delay, of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { IMRDataRaceModel } from 'src/app/integration/ergast/models/mr-data.model';
-import { IRaceModel } from 'src/app/integration/ergast/models/race.model';
+import { IMRDataRaceModel } from 'src/app/store/ergast/models/mr-data.model';
+import { IRaceModel } from 'src/app/store/ergast/models/race.model';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { StoreService } from 'src/app/integration/store.service';
+import { StoreService } from 'src/app/store/store.service';
 
 // IMPORT Mock json data for testing
 import * as seasonResults from 'src/mocks/edgast/season-results.json';
