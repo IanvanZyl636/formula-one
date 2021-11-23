@@ -22,10 +22,12 @@ My Approach was to create a enterprise grade solution to achive this I implement
   </li>
 </ul>
  
+## CI/CD
+There is a YAML file in`~ > .github > workflows > pipeline-build-test.yml` which has all the instructions for my github pipeline to build and test the project when a new change is pushed to the main branch
 
 ## Store
 
-I wanted to integrate with a library like RxJs or Redux but decided against it because the current project is very small and you have to add a lot of boiler plate to integrate with those libraries. Instead I decided to implement my own angular singleton store service in order to keep the references pointing to same place so if the project grows and the need for RxJs or Redux is more apparent it will be easy to integrate with.
+I wanted to integrate with a library like <a href="https://ngrx.io/">NgJx</a> or <a href="https://redux.js.org/">Redux</a> but decided against it because the current project is very small and you have to add a lot of boiler plate to integrate with those libraries. Instead I decided to implement my own angular singleton store service in order to keep the references pointing to same place so if the project grows and the need for <a href="https://ngrx.io/">NgJx</a> or <a href="https://redux.js.org/">Redux</a> is more apparent it will be easy to integrate with.
 
 ### Ergast api integration
 
@@ -84,8 +86,6 @@ The main shared styles is just in the `scr` folder.
 `style.scss` => contains website wide share styles it also imports the fonts and variables to make it available for the website.
 
 `bootstrap.min.css` => this is the minified compiled bootstrap css. which adds all bootstraps responsive style classes to the project without having to add the bootstrap npm package. Keeps the website light weight with this appoach. This file will be bundles with all the scss by webpack.
-
-
 
 ## Libraries
 
