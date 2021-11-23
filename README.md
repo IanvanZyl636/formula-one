@@ -85,7 +85,8 @@ The main shared styles is just in the `scr` folder.
 
 `bootstrap.min.css` => this is the minified compiled bootstrap css. which adds all bootstraps responsive style classes to the project without having to add the bootstrap npm package. Keeps the website light weight with this appoach. This file will be bundles with all the scss by webpack.
 
-
+## CI/CD
+There is a YAML file in`~ > .github > workflows > pipeline-build-test.yml` which has all the instructions for my github pipeline to build and test the project when a new change is pushed to the main branch
 
 ## Libraries
 
