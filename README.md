@@ -1,11 +1,6 @@
 # FormulaOne :checkered_flag:
 
-<<<<<<< HEAD
 <img  src="/sample/sample-gif.gif?raw=true">
-=======
-![Final Preview](https://i.ibb.co/0mtYPCX/2021-11-22-22-09-56.gif)
-
-> > > > > > > 2af8462ee73b07718344d93a2275b535d3aa8d3c
 
 ### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
