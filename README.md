@@ -27,7 +27,7 @@ There is a YAML file in`~ > .github > workflows > pipeline-build-test.yml` which
 
 ## Store
 
-I wanted to integrate with a library like <a href="https://ngrx.io/">NgJx</a> or <a href="https://redux.js.org/">Redux</a> but decided against it because the current project is very small and you have to add a lot of boiler plate to integrate with those libraries. Instead I decided to implement my own angular singleton store service in order to keep the references pointing to same place so if the project grows and the need for <a href="https://ngrx.io/">NgJx</a> or <a href="https://redux.js.org/">Redux</a> is more apparent it will be easy to integrate with.
+I wanted to integrate with a library like <a href="https://ngrx.io/">NgRx</a> or <a href="https://redux.js.org/">Redux</a> but decided against it because the current project is very small and you have to add a lot of boiler plate to integrate with those libraries. Instead I decided to implement my own angular singleton store service in order to keep the references pointing to same place so if the project grows and the need for <a href="https://ngrx.io/">NgJx</a> or <a href="https://redux.js.org/">Redux</a> is more apparent it will be easy to integrate with.
 
 ### Ergast api integration
 
