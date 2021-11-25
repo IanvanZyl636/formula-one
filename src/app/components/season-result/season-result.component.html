@@ -1,9 +1,9 @@
 <app-page
   [heading]="pageTitle"
-  [centerContent]="centerContent"
-  [isLoading]="isLoading"
+  [centerContent]="centerContent(races$ | async)"
+  [isLoading]="isLoading$ | async"
 >
-  <ng-container>
+  <ng-container *ngIf="races$ | async as races">
     <div class="table-responsive">
       <table id="races-table" class="table" *ngIf="races.length > 0">
         <thead>
@@ -23,17 +23,17 @@
             *ngFor="let race of races"
             [ngClass]="{
               'driver-id-hightlight':
-                driverId === race.Results[0]?.Driver?.driverId
+                driverId === race.Results[0].Driver.driverId
             }"
           >
-            <th>{{ race?.round }}</th>
-            <td>{{ race?.raceName }}</td>
-            <td>{{ race?.Circuit?.circuitName }}</td>
-            <td>{{ race.Results[0]?.Driver?.familyName }}</td>
-            <td>{{ race.Results[0]?.Constructor?.name }}</td>
-            <td>{{ race.Results[0]?.points }}</td>
-            <td>{{ race.Results[0]?.laps }}</td>
-            <td>{{ race.Results[0]?.Time?.time }}</td>
+            <th>{{ race.round }}</th>
+            <td>{{ race.raceName }}</td>
+            <td>{{ race.Circuit.circuitName }}</td>
+            <td>{{ race.Results[0].Driver?.familyName }}</td>
+            <td>{{ race.Results[0].Constructor?.name }}</td>
+            <td>{{ race.Results[0].points }}</td>
+            <td>{{ race.Results[0].laps }}</td>
+            <td>{{ race.Results[0].Time?.time }}</td>
           </tr>
         </tbody>
       </table>

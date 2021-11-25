@@ -1,40 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { filter } from 'rxjs/operators';
-import { AsyncComponent } from 'src/app/base-components/async-component/async-component.base';
-import { IStandingModel } from 'src/app/store/ergast/models/standing.model';
-import { StoreService } from 'src/app/store/store.service';
+import { Store } from '@ngrx/store';
+import { IStandingModel } from 'src/app/integration/ergast/models/standing.model';
+import { WorldChampionsActions } from 'src/app/ngrx-store/actions/world-champions.actions';
+import { WorldChampionsState } from 'src/app/ngrx-store/state-models/world-champions-state.model';
 
 @Component({
   selector: 'app-world-champions',
   templateUrl: './world-champions.component.html',
   styleUrls: ['./world-champions.component.scss'],
 })
-export class WorldChampionsComponent extends AsyncComponent implements OnInit {
+export class WorldChampionsComponent implements OnInit {
   public readonly pageTitle = 'Season World Champions';
-  public seasonsWorldChampion: IStandingModel[] = [];
 
-  public get centerContent() {
-    return this.seasonsWorldChampion.length > 0;
-  }
+  public seasonsWorldChampion$ = this._store.select(
+    (state) => state.worldChampionsState.seasonsWorldChampion
+  );
+  public isLoading$ = this._store.select(
+    (state) => state.worldChampionsState.isLoading
+  );
 
-  constructor(private _storeService: StoreService) {
-    super();
-  }
+  constructor(
+    private _store: Store<{ worldChampionsState: WorldChampionsState }>
+  ) {}
 
   ngOnInit(): void {
-    this._storeService.ergastStore.getDriverStandingsByYear(2005);
-
-    this._apiRequest(
-      this._storeService.ergastStore.driverStandings.pipe(
-        filter((x) => x !== undefined)
-      )
-    ).subscribe({
-      next: (response) =>
-        (this.seasonsWorldChampion = response as IStandingModel[]),
-      error: (error) => {
-        console.error(error);
-        this.seasonsWorldChampion = [];
-      },
-    });
+    this._store.dispatch(
+      WorldChampionsActions.getWorldChampions({ startYear: 2005 })
+    );
   }
+
+  centerContent = (seasonsWorldChampion?: IStandingModel[] | null) =>
+    seasonsWorldChampion != null && seasonsWorldChampion.length > 0;
 }

@@ -6,7 +6,7 @@
       </div>
       <div class="flex-grow-1 flex-shrink-0">
         <div
-          *ngIf="isLoading === false"
+          *ngIf="isLoading === false || isLoading == null"
           id="content"
           class="h-100 d-flex"
           [ngClass]="{

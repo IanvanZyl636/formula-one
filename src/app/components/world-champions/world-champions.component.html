@@ -1,21 +1,23 @@
 <app-page
   [heading]="pageTitle"
-  [centerContent]="centerContent"
-  [isLoading]="isLoading"
+  [centerContent]="centerContent(seasonsWorldChampion$ | async)"
+  [isLoading]="isLoading$ | async"
 >
-  <div class="ps-4 pe-4 pt-4">
-    <div class="row" *ngIf="seasonsWorldChampion.length > 0">
-      <div
-        class="col-lg-3 col-6 mb-4"
-        *ngFor="let seasonWorldChampion of seasonsWorldChampion"
-      >
-        <app-world-champion-card
-          [seasonWorldChampion]="seasonWorldChampion"
-        ></app-world-champion-card>
+  <ng-container *ngIf="seasonsWorldChampion$ | async as seasonsWorldChampion">
+    <div class="ps-4 pe-4 pt-4">
+      <div class="row" *ngIf="seasonsWorldChampion.length > 0">
+        <div
+          class="col-lg-3 col-6 mb-4"
+          *ngFor="let seasonWorldChampion of seasonsWorldChampion"
+        >
+          <app-world-champion-card
+            [seasonWorldChampion]="seasonWorldChampion"
+          ></app-world-champion-card>
+        </div>
+      </div>
+      <div *ngIf="seasonsWorldChampion.length === 0" class="no-list-items-text">
+        <span>No result found</span>
       </div>
     </div>
-    <div *ngIf="seasonsWorldChampion.length === 0" class="no-list-items-text">
-      <span>No result found</span>
-    </div>
-  </div>
+  </ng-container>
 </app-page>
