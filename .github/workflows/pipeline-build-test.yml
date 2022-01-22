@@ -2,13 +2,13 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
-jobs:  
-  build:    
+jobs:
+  build:
     name: Build & Test
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [14.x]
@@ -43,3 +43,6 @@ jobs:
 
       - name: List Files in Distribution Directory
         run: ls -R ./dist
+
+      - name: Deploy
+        run: npm run deploy
