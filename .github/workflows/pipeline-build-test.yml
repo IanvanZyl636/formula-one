@@ -43,6 +43,3 @@ jobs:
 
       - name: List Files in Distribution Directory
         run: ls -R ./dist
-
-      - name: Deploy
-        run: npm run deploy
