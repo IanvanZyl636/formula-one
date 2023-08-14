@@ -13,7 +13,8 @@
     "ci:clean": "rimraf ./dist",
     "ci:test": "ng test --watch=false --browsers=ChromeHeadlessCustom --code-coverage",
     "ci:build": "ng build",
-    "deploy": "ng deploy --base-href=/formula-one/"
+    "deploy": "ng deploy --base-href=/formula-one/",
+    "test": "test"
   },
   "private": true,
   "dependencies": {
